@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Header from "$lib/client/components/layout/header.svelte";
+	import Header from "$lib/components/layout/header.svelte";
 	import type { PageProps } from "./$types";
-	import Card from "$lib/client/components/blog/card.svelte";
+	import Card from "$lib/components/blog/card.svelte";
 
 	const props: PageProps = $props();
 </script>

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from "$app/state";
-	import Share from "$lib/client/components/blog/share.svelte";
-	import Header from "$lib/client/components/layout/header.svelte";
+	import Share from "$lib/components/blog/share.svelte";
+	import Header from "$lib/components/layout/header.svelte";
 	import type { LayoutProps } from "./$types";
 
 	const { data, children }: LayoutProps = $props();
