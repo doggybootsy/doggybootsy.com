@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Anchor from "$lib/client/components/anchor.svelte";
-	import Details from "$lib/client/components/details.svelte";
-	import Inlinecode from "$lib/client/components/markdown/inlinecode.svelte";
+	import Anchor from "$lib/components/anchor.svelte";
+	import Details from "$lib/components/details.svelte";
+	import Inlinecode from "$lib/components/markdown/inlinecode.svelte";
 </script>
 
 <div class="*:not-last:mb-4 text-center">

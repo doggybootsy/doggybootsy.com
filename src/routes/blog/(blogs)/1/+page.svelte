@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Emoji from "$lib/client/components/markdown/emoji.svelte";
+	import Emoji from "$lib/components/markdown/emoji.svelte";
 </script>
 
 <div class="*:not-last:mb-4 text-center">

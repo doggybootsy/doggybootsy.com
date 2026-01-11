@@ -35,17 +35,17 @@
 	--color-theme-1000: #030405;
 
 	/* TODO: REMOVE */
-	--color-bd-50: #c3d4ed;
-	--color-bd-100: #b4c9e9;
-	--color-bd-200: #94b2df;
-	--color-bd-300: #759cd6;
-	--color-bd-400: #5585cd;
-	--color-bd-500: #396fc0;
-	--color-bd-600: #305da1;
-	--color-bd-700: #264b81;
-	--color-bd-800: #1d3862;
-	--color-bd-900: #142642;
-	--color-bd-950: #0F1D32l;
+	--color-accent-50: #c3d4ed;
+	--color-accent-100: #b4c9e9;
+	--color-accent-200: #94b2df;
+	--color-accent-300: #759cd6;
+	--color-accent-400: #5585cd;
+	--color-accent-500: #396fc0;
+	--color-accent-600: #305da1;
+	--color-accent-700: #264b81;
+	--color-accent-800: #1d3862;
+	--color-accent-900: #142642;
+	--color-accent-950: #0F1D32l;
 }
 
 :root {
@@ -78,23 +78,23 @@ a:hover, .touch a {
 }
 
 ::selection {
-	@apply bg-bd-500 text-white;
+	@apply bg-accent-500 text-white;
 }
 
 .wrap {
 	@apply mx-auto w-full max-w-340 sm:px-16 px-4;
 }
 .anchor {
-	@apply text-bd-400 hover:underline;
+	@apply text-accent-400 hover:underline;
 }
 .focusOutline {
-	@apply outline-bd-500/70 focus:outline-2 focus:outline-offset-3;
+	@apply outline-accent-500/70 focus:outline-2 focus:outline-offset-3;
 }
 .focusWithinOutline {
-	@apply outline-bd-500/70 focus-within:outline-2 focus-within:outline-offset-3;
+	@apply outline-accent-500/70 focus-within:outline-2 focus-within:outline-offset-3;
 }
 .hoverOutline {
-	@apply outline-bd-500/70 hover:outline-2 hover:outline-offset-3;
+	@apply outline-accent-500/70 hover:outline-2 hover:outline-offset-3;
 }
 .textShadow {
 	text-shadow: 0 2px 5px black;

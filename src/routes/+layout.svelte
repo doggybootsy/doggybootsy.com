@@ -1,8 +1,8 @@
 <script lang="ts">
 	import "./layout.css";
 	import favicon from "$lib/assets/favicon.svg";
-	import Nav from "$lib/client/components/layout/nav.svelte";
-	import Footer from "$lib/client/components/layout/footer.svelte";
+	import Nav from "$lib/components/layout/nav.svelte";
+	import Footer from "$lib/components/layout/footer.svelte";
 	import { onNavigate } from "$app/navigation";
 	import type { LayoutProps } from "./$types";
 	import { browser } from "$app/environment";
