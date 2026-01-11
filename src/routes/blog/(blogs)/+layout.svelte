@@ -16,14 +16,18 @@
 	<meta property="og:url" content={page.url.href} />
 	<meta property="og:title" content={data.blog.title} />
 	<meta property="og:description" content={data.blog.description} />
-	<meta property="og:image" content={data.blog.background_image} />
+	{#if data.blog.background_image} 
+		<meta property="og:image" content={data.blog.background_image} />
+	{/if}
 
 	<!-- Twitter -->
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:url" content={page.url.href} />
 	<meta name="twitter:title" content={data.blog.title} />
 	<meta name="twitter:description" content={data.blog.description} />
-	<meta name="twitter:image" content={new URL(data.blog.background_image!, page.url.href).toString()} />
+	{#if data.blog.background_image} 
+		<meta property="twitter:image" content={data.blog.background_image} />
+	{/if}
 </svelte:head>
 
 <Header
