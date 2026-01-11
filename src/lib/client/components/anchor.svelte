@@ -4,12 +4,14 @@
 
 	interface Props extends Omit<HTMLAnchorAttributes, "href"> {
 		href: string | URL;
+		"no-default-class"?: true
 	}
 
 	const {
 		onclick,
 		href,
 		class: klass,
+		"no-default-class": noDefaultClass,
 		...props
 	}: Props = $props();
 
@@ -36,6 +38,6 @@
 	});
 </script>
 
-<a {...oProps} class={[klass, "anchor"]} onclick={onClick} href={url.href}>
+<a {...oProps} class={[klass, !noDefaultClass && "anchor"]} onclick={onClick} href={url.href}>
 	{@render props.children?.()}
 </a>
