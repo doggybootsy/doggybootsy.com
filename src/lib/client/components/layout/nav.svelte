@@ -6,7 +6,7 @@
 
 	let change = $state(false);
 
-	let devBanner = $state(dev);
+	let devBanner = $state(dev || page.url.host.endsWith(".workers.dev"));
 
 	$effect.pre(() => {
 		if (!nav) return;
@@ -40,8 +40,18 @@
 	bind:this={nav}
 >
 	{#if devBanner}
-		<div class="wrap bg-red-700/15 text-red-500/80 py-1 rounded-b-md max-h-8 flex items-center" role="banner">
-			<div>Development Build</div>
+		<div class={{
+			"wrap py-1 rounded-b-md max-h-8 flex items-center": true,
+			"bg-red-700/15 text-red-500/80": dev,
+			"bg-yellow-700/15 text-yellow-500/80": !dev
+		}} role="banner">
+			<div>
+				{#if dev}
+					Development Build
+				{:else}
+					Snapshot Build
+				{/if}
+			</div>
 
 			<div class="mx-auto"></div>
 

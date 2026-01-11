@@ -1,6 +1,7 @@
-<script>
+<script lang="ts">
 	import Anchor from "../anchor.svelte";
 </script>
+
 <footer class="bg-theme-1000 border-theme-500 border-t sm:py-14 py-8">
 	<div class="wrap">
 		<div class="flex justify-between items-center sm:flex-row sm:gap-8 flex-col gap-4">
