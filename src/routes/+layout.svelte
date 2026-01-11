@@ -11,7 +11,7 @@
 		onNavigate(() => void document.startViewTransition());
 	}	
 	
-	const { children }: LayoutProps = $props();
+	const { children, data }: LayoutProps = $props();
 </script>
 
 <svelte:head>
@@ -19,7 +19,7 @@
 	<link rel="icon" href={favicon} />
 </svelte:head>
 
-<Nav />
+<Nav admin={data.viewer.isAdmin} />
 
 <div class="relative flex flex-col pt-(--nav-height) grow min-h-svh">
 	<div class="flex flex-1 flex-col">
