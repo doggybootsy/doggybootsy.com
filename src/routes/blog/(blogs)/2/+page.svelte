@@ -25,7 +25,7 @@
 
 	<p>
 		Because of BetterDiscord being my first mod it was always inspiration for me.
-		When developing my own personal client mods, I looked at BetterDIscord to see how things were done.
+		When developing my own personal client mods, I looked at BetterDiscord to see how things were done.
 		For a client mod called Vizality, I even made a compat layer for BetterDiscord so you can use BetterDiscord plugins within it.
 	</p>
 
@@ -61,7 +61,7 @@
 		</Anchor> and pushed it to the client. 
 		With that change it broke roughly 70% of my client mod.
 		Zrodevkaan made a fix for it, but with discord constantly changing everything I decided to stop working on it.
-		So I switched fully to BetterDIscord, Zrodevkaan joining me too.
+		So I switched fully to BetterDiscord, Zrodevkaan joining me too.
 	</p>
 
 	<p>

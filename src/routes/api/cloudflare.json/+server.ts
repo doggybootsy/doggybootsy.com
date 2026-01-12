@@ -1,16 +1,23 @@
 import type { RequestHandler } from "./$types";
-import * as env from "$env/static/private";
+import {
+	WORKERS_CI_BRANCH,
+	WORKERS_CI_COMMIT_SHA,
+	WORKERS_CI_BUILD_UUID
+} from "$env/static/private";
+import { dev } from "$app/environment";
 
 export const GET: RequestHandler = () => {
 	return Response.json({
-		GIT: {
-			BRANCH: env.WORKERS_CI_BRANCH,
-			COMMIT: env.WORKERS_CI_COMMIT_SHA,
-			URL: `https://github.com/doggybootsy/doggybootsy.com/commit/${env.WORKERS_CI_COMMIT_SHA}`
+		git: {
+			branch: WORKERS_CI_BRANCH,
+			commit: WORKERS_CI_COMMIT_SHA,
+			url: `https://github.com/doggybootsy/doggybootsy.com/commit/${WORKERS_CI_COMMIT_SHA}`
 		},
-		BUILD: {
-			UUID: env.WORKERS_CI_BUILD_UUID,
-			IS_SNAPSHOT: env.WORKERS_CI_BRANCH !== "main"
+		build: {
+			uuid: WORKERS_CI_BUILD_UUID,
+			production: WORKERS_CI_BRANCH === "main",
+			preview: WORKERS_CI_BRANCH !== "main",
+			development: dev
 		}
 	});
 }

@@ -3,14 +3,8 @@
 	import favicon from "$lib/assets/favicon.svg";
 	import Nav from "$lib/components/layout/nav.svelte";
 	import Footer from "$lib/components/layout/footer.svelte";
-	import { onNavigate } from "$app/navigation";
 	import type { LayoutProps } from "./$types";
-	import { browser } from "$app/environment";
 
-	if (browser && typeof document.startViewTransition === "function") {
-		onNavigate(() => void document.startViewTransition());
-	}	
-	
 	const { children, data }: LayoutProps = $props();
 </script>
 
