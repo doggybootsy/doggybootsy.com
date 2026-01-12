@@ -4,7 +4,6 @@ import {
 	WORKERS_CI_COMMIT_SHA,
 	WORKERS_CI_BUILD_UUID
 } from "$env/static/private";
-import { dev } from "$app/environment";
 
 export const GET: RequestHandler = () => {
 	return Response.json({
@@ -16,8 +15,7 @@ export const GET: RequestHandler = () => {
 		build: {
 			uuid: WORKERS_CI_BUILD_UUID,
 			production: WORKERS_CI_BRANCH === "main",
-			preview: WORKERS_CI_BRANCH !== "main",
-			development: dev
+			preview: WORKERS_CI_BRANCH !== "main"
 		}
 	});
 }
