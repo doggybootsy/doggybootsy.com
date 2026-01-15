@@ -9,7 +9,7 @@
 
 	<p>
 		I have been using Discord since 2018.
-		For most of that time I was client mods.
+		For most of that time I was using client mods.
 		BetterDiscord being my first client mod!
 	</p>
 	

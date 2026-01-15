@@ -41,7 +41,7 @@
 					</svg>
 				</Anchor>
 				<Anchor
-					href="https://betterdiscord.app/developer/Doggybootsy"
+					href="https://betterdiscord.app/developer/DoggyBootsy"
 					class="focusOutline rounded-md p-3 group/bdlogo hover:bg-white/5 hover:text-white"
 					aria-label="betterdiscord"
 					no-default-class

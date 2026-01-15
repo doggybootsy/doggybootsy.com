@@ -7,7 +7,9 @@
 
 	let change = $state(false);
 
-	let devBanner = $state(dev || page.url.host.endsWith(".workers.dev"));
+	const isInDev = true;
+
+	let devBanner = $state(isInDev || dev || page.url.host.endsWith(".workers.dev"));
 
 	$effect.pre(() => {
 		if (!nav) return;
@@ -55,6 +57,8 @@
 			<div>
 				{#if dev}
 					Development Build
+				{:else if isInDev}
+					Site is still a work in progress!
 				{:else}
 					Snapshot Build
 				{/if}

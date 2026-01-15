@@ -18,4 +18,4 @@ export const GET: RequestHandler = () => {
 			preview: WORKERS_CI_BRANCH !== "main"
 		}
 	});
-}
+};
