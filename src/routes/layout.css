@@ -96,6 +96,7 @@ a:hover, .touch a {
 .hoverOutline {
 	@apply outline-accent-500/70 hover:outline-2 hover:outline-offset-3;
 }
+
 .textShadow {
 	text-shadow: 0 2px 5px black;
 }
