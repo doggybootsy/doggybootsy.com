@@ -18,6 +18,6 @@
 	</p>
 
 	<p>
-		<span>Made with love</span> <Emoji emoji="sparkling_heart" />
+		<span>Made with love</span> <Emoji emoji="symbols.sparkling_heart" />
 	</p>
 </div>

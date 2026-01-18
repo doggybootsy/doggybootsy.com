@@ -4,7 +4,8 @@
 
 	interface Props extends Omit<HTMLAnchorAttributes, "href"> {
 		href: string | URL;
-		"no-default-class"?: true
+		"no-default-class"?: true;
+		disabled?: boolean;
 	}
 
 	const {
@@ -12,6 +13,7 @@
 		href,
 		class: klass,
 		"no-default-class": noDefaultClass,
+		disabled,
 		...props
 	}: Props = $props();
 
@@ -29,6 +31,9 @@
 
 		if (event.defaultPrevented) return;
 		
+		if (disabled) {
+			event.preventDefault();
+		}
 		// todo alert
 	});
 
