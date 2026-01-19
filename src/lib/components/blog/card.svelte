@@ -9,7 +9,7 @@
 	const { blog }: Props = $props();
 </script>
 
-<div class="hoverOutline grid grid-rows-2 relative overflow-hidden bg-theme-800 border border-theme-400 py-2 px-4 rounded-md isolate min-h-60">			
+<div class="grid grid-rows-2 relative overflow-hidden bg-theme-800 border border-theme-400 py-2 px-4 rounded-md isolate min-h-60">			
 	<div class="mb-auto pointer-events-none">
 		<div class="float-end">
 			<Share {blog} isCard />
