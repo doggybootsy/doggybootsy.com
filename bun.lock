@@ -20,6 +20,7 @@
         "@sveltejs/kit": "^2.49.1",
         "@sveltejs/vite-plugin-svelte": "^6.2.1",
         "@tailwindcss/vite": "^4.1.17",
+        "@types/cloudflare-turnstile": "^0.2.2",
         "@types/node": "^18",
         "eslint": "^9.39.1",
         "eslint-config-prettier": "^10.1.8",
@@ -301,6 +302,8 @@
     "@twemoji/api": ["@twemoji/api@17.0.2", "", { "dependencies": { "@twemoji/parser": "17.0.1", "fs-extra": "^8.0.1", "jsonfile": "^5.0.0", "universalify": "^0.1.2" } }, "sha512-5xIdBcFLpRW4goXNdNNz497TzMHF2a76yElEaqISxVPj+KpJB82KuXHczfjhhTCsPaP1lAhM3qPtvAhMG7e71A=="],
 
     "@twemoji/parser": ["@twemoji/parser@17.0.1", "", {}, "sha512-Uiq5sq1Wx91Y6C0DczMlu4Gj4nC/0z8UIhT7S53hi/JATaS1oLM5jXygjot7STtyVoIagfnpsBCWaNy3ayfyFw=="],
+
+    "@types/cloudflare-turnstile": ["@types/cloudflare-turnstile@0.2.2", "", {}, "sha512-3Yf7b1Glci+V2bFWwWBbZkRgTuegp7RDgNTOG4U0UNPB9RV4AWvwqg2/qqLff8G+SwKFNXoXvTkqaRBZrAFdKA=="],
 
     "@types/cookie": ["@types/cookie@0.6.0", "", {}, "sha512-4Kh9a6B2bQciAhf7FSuMRRkUWecJgJu9nPnx3yzpsfXX/c50REIqpHY4C82bXP90qrLtXtkDxTZosYO3UpOwlA=="],
 

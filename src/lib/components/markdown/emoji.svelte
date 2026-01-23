@@ -65,6 +65,7 @@
 		img.addEventListener("error", onerror, { once: true });
 		return () => img.removeEventListener("error", onerror);
 	}
+
 </script>
 
 {#snippet ToastIcon()}
