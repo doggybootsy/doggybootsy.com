@@ -5,6 +5,7 @@
 	import Footer from "$lib/components/layout/footer.svelte";
 	import type { LayoutProps } from "./$types";
 	import Toast from "$lib/components/layout/toast.svelte";
+	import twemoji from "@twemoji/api";
 
 	const { children, data }: LayoutProps = $props();
 </script>
@@ -15,6 +16,8 @@
 
 	<meta name="build:sha" content={data.buildInfo.commit}>
 	<meta name="build:uuid" content={data.buildInfo.uuid}>
+
+	<link rel="dns-prefetch" href={new URL(twemoji.base).origin}>
 </svelte:head>
 
 <Nav />

@@ -5,6 +5,7 @@ declare global {
 		// interface Error {}
 		// interface Locals {}
 		interface PageData {
+			sitekey: string;
 			buildInfo: typeof import("$lib/server/build-info")["cloudflareBuild"] & typeof import("$lib/server/build-info")["git"]
 		}
 		// interface PageState {}
