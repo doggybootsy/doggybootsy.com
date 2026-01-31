@@ -26787,4 +26787,4 @@ export default {
             "surrogates": "🇺🇲"
         }
     }
-} as const satisfies Record<string, BaseEmoji | EmojiWithDiversity>;
+} as const satisfies Record<string, Record<string, BaseEmoji | EmojiWithDiversity>>;
