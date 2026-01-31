@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { dev } from "$app/environment";
 	import { page } from "$app/state";
-	import { BugAnt, Newspaper } from "$lib/components/icons";
+	import { BugAnt, Newspaper, User } from "$lib/components/icons";
 	import Anchor from "../anchor.svelte";
 
 	let nav: HTMLElement | null = $state(null);
@@ -114,6 +114,16 @@
 			>
 				<Newspaper />
 			</Anchor>
+			<!-- <Anchor 
+				href="/login"
+				role="button"
+				class={{
+					"focusOutline rounded-md p-3 hover:bg-white/5 hover:text-white transition-colors": true
+				}}
+				no-default-class
+			>
+				<User />
+			</Anchor> -->
 
 			<!-- <button 
 				type="button"
