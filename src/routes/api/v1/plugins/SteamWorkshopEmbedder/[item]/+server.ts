@@ -1,6 +1,6 @@
 import type { RequestHandler } from "./$types";
 import { getPlayer, getWorkshopItem } from "$lib/server/steam";
-import sharp from "sharp";
+import { PhotonImage, SamplingFilter, resize } from "@cf-wasm/photon";
 import { rgbaToThumbHash } from "thumbhash";
 import { cacheFactory } from "$lib/utils/cache";
 
@@ -67,25 +67,27 @@ const cache = cacheFactory();
 async function getThumbnail(url: string) {
 	return cache(url, async () => {
 		const request = await fetch(url);
-		const buffer = await request.arrayBuffer();
+		const buffer = new Uint8Array(await request.arrayBuffer());
 
-		const image = sharp(Buffer.from(buffer));
+		const contentType = request.headers
+			.get("content-type")
+			?.split(";")[0];
 
-		const [meta, placeholder] = await Promise.all([
-			image.metadata(),
-			image
-				.clone()
-				.ensureAlpha()
-				.resize({ width: 100, height: 100, fit: "inside" })
-				.raw()
-				.toBuffer({ resolveWithObject: true })
-		]);
+		const image = PhotonImage.new_from_byteslice(buffer);
+
+		const out = resize(image, 100, 100, SamplingFilter.Nearest);
+
+		const thumbhash = rgbaToThumbHash(
+			out.get_width(),
+			out.get_height(),
+			image.get_bytes_jpeg(1)
+		);
 
 		return {
-			content_type: placeholder.info.format,
-			height: meta.height,
-			width: meta.width,
-			placeholder: rgbaToThumbHash(placeholder.info.width, placeholder.info.height, placeholder.data)
+			content_type: contentType,
+			height: image.get_height(),
+			width: image.get_width(),
+			placeholder: rgbaToThumbHash(out.get_width(), out.get_height(), thumbhash)
 				//@ts-expect-error
 				.toString("base64"),
 			url
