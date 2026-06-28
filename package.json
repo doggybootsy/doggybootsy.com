@@ -40,11 +40,13 @@
     "wrangler": "^4.58.0"
   },
   "dependencies": {
+    "@cf-wasm/photon": "^0.3.6",
     "@internationalized/date": "^3.10.1",
     "@sveltejs/adapter-cloudflare": "^7.2.4",
     "@twemoji/api": "^17.0.2",
     "bits-ui": "^2.15.0",
     "clsx": "^2.1.1",
+    "thumbhash": "^0.1.1",
     "ytdl-core": "^4.11.5",
     "zod": "^4.3.5"
   }
