@@ -64,6 +64,11 @@ function workshopDescriptionToText(description: string): string {
 
 const cache = cacheFactory();
 
+function toBase64(buffer: Uint8Array, alphabet: "base64" | "base64url" = "base64") {
+	if (typeof buffer.toBase64 === "function") return buffer.toBase64({alphabet});
+	return Buffer.from(buffer).toString(alphabet);
+}
+
 async function getThumbnail(url: string) {
 	return cache(url, async () => {
 		const request = await fetch(url);
@@ -87,9 +92,10 @@ async function getThumbnail(url: string) {
 			content_type: contentType,
 			height: image.get_height(),
 			width: image.get_width(),
-			placeholder: rgbaToThumbHash(out.get_width(), out.get_height(), thumbhash)
-				//@ts-expect-error
-				.toString("base64"),
+			placeholder: toBase64(
+				rgbaToThumbHash(out.get_width(), out.get_height(), thumbhash),
+				"base64url"
+			),
 			url
 		}
 	});
@@ -99,11 +105,6 @@ export const GET: RequestHandler = async ({ params, url }) => {
 	const item = await getWorkshopItem(params.item);
 	const [user, thumbnail] = await Promise.all([getPlayer(item.creator), getThumbnail(item.preview_url)]);
 
-	let description: string | undefined;
-	if (!url.searchParams.has("no-description") && !url.searchParams.has("nodesc")) {
-		description = workshopDescriptionToText(item.file_description).slice(0, 4096).trim();
-	}
-
 	return Response.json({
 		title: item.title,
 		author: {
@@ -112,7 +113,7 @@ export const GET: RequestHandler = async ({ params, url }) => {
 			avatar: user.avatarmedium
 		},
 		color: workshopColor(item.creator, params.item),
-		description,
+		description: workshopDescriptionToText(item.file_description).slice(0, 4096).trim(),
 
 		subscriptions: item.subscriptions,
 		favorited: item.favorited,
