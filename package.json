@@ -46,6 +46,7 @@
     "@twemoji/api": "^17.0.2",
     "bits-ui": "^2.15.0",
     "clsx": "^2.1.1",
+    "discord-api-types": "^0.38.49",
     "thumbhash": "^0.1.1",
     "ytdl-core": "^4.11.5",
     "zod": "^4.3.5"
