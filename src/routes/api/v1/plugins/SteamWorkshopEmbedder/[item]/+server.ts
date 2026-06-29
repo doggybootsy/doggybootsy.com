@@ -3,6 +3,7 @@ import { getPlayer, getWorkshopItem } from "$lib/server/steam";
 import { PhotonImage, SamplingFilter, resize } from "@cf-wasm/photon";
 import { rgbaToThumbHash } from "thumbhash";
 import { cacheFactory } from "$lib/utils/cache";
+import { EmbedType, type APIEmbed, type APIEmbedImage } from "discord-api-types/v10";
 
 function workshopColor(creatorId: string, workshopItemId: string): number {
 	const input = `${creatorId}:${workshopItemId}`;
@@ -69,8 +70,8 @@ function toBase64(buffer: Uint8Array, alphabet: "base64" | "base64url" = "base64
 	return Buffer.from(buffer).toString(alphabet);
 }
 
-async function getThumbnail(url: string) {
-	return cache(url, async () => {
+async function getThumbnail(url: string): Promise<APIEmbedImage> {
+	return cache<Promise<APIEmbedImage>>(url, async () => {
 		const request = await fetch(url);
 		const buffer = new Uint8Array(await request.arrayBuffer());
 
@@ -96,38 +97,60 @@ async function getThumbnail(url: string) {
 				rgbaToThumbHash(out.get_width(), out.get_height(), thumbhash),
 				"base64url"
 			),
-			url
+			url,
+			proxy_url: url
 		}
 	});
 }
 
-export const GET: RequestHandler = async ({ params, url }) => {
+export const GET: RequestHandler = async ({ params }) => {
 	const item = await getWorkshopItem(params.item);
-	const [user, thumbnail] = await Promise.all([getPlayer(item.creator), getThumbnail(item.preview_url)]);
+	const [creator, thumbnail] = await Promise.all([getPlayer(item.creator), getThumbnail(item.preview_url)]);
 
-	return Response.json({
+	const embed: APIEmbed = {
 		title: item.title,
 		author: {
-			name: user.personaname,
-			url: user.profileurl,
-			avatar: user.avatarmedium
+			name: creator.personaname,
+			url: creator.profileurl,
+			icon_url: creator.avatarmedium,
+			proxy_icon_url: creator.avatarmedium
 		},
 		color: workshopColor(item.creator, params.item),
 		description: workshopDescriptionToText(item.file_description).slice(0, 4096).trim(),
-
-		subscriptions: item.subscriptions,
-		favorited: item.favorited,
-		followers: item.followers,
-
-		tags: item.tags.map(x => x.display_name || x.tag),
-		
-		time: {
-			updated: item.time_updated,
-			createed: item.time_created
-		},
-
+		fields: [
+			{
+				name: "Subscriptions",
+				value: item.subscriptions.toString(),
+				inline: true
+			},
+			{
+				name: "Favorites",
+				value: item.favorited.toString(),
+				inline: true
+			},
+			{
+				name: "Followers",
+				value: item.followers.toString(),
+				inline: true
+			},
+			{
+				name: "Tags",
+				value: item.tags.map(x => x.display_name || x.tag).join(", "),
+				inline: false
+			}
+		],
 		thumbnail,
+		footer: {
+			text: "Last Updated"
+		},
+		timestamp: new Date(item.time_updated).toISOString(),
+		type: EmbedType.Rich,
+		url: `https://steamcommunity.com/sharedfiles/filedetails/?id=${params.item}`
+	};
 
+	return Response.json({
+		embed,
+		lang: "en-US",
 		id: params.item
 	});
 }
