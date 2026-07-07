@@ -143,7 +143,7 @@ export const GET: RequestHandler = async ({ params }) => {
 		footer: {
 			text: "Last Updated"
 		},
-		timestamp: new Date(item.time_updated).toISOString(),
+		timestamp: new Date(item.time_updated * 1000).toISOString(),
 		type: EmbedType.Rich,
 		url: `https://steamcommunity.com/sharedfiles/filedetails/?id=${params.item}`
 	};
