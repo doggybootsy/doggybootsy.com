@@ -1,9 +1,10 @@
 import type { RequestHandler } from "./$types";
-import { getPlayer, getWorkshopItem } from "$lib/server/steam";
+import { getPlayer, getWorkshopItem, type PublishedFileDetails, type SteamPlayer } from "$lib/server/steam";
 import { PhotonImage, SamplingFilter, resize } from "@cf-wasm/photon";
 import { rgbaToThumbHash } from "thumbhash";
 import { cacheFactory } from "$lib/utils/cache";
 import { EmbedType, type APIEmbed, type APIEmbedImage } from "discord-api-types/v10";
+import { STEAM_API_KEY } from "$env/static/private";
 
 function workshopColor(creatorId: string, workshopItemId: string): number {
 	const input = `${creatorId}:${workshopItemId}`;
@@ -104,8 +105,19 @@ async function getThumbnail(url: string): Promise<APIEmbedImage> {
 }
 
 export const GET: RequestHandler = async ({ params }) => {
-	const item = await getWorkshopItem(params.item);
-	const [creator, thumbnail] = await Promise.all([getPlayer(item.creator), getThumbnail(item.preview_url)]);
+	if (!STEAM_API_KEY) {
+		return Response.json({message: "Internal var STEAM_API_KEY not set!"}, {status: 500, statusText: "Internal Server Error"})
+	}
+
+	let item: PublishedFileDetails, creator: SteamPlayer, thumbnail: APIEmbedImage;
+
+	try {
+		item = await getWorkshopItem(params.item);
+		[creator, thumbnail] = await Promise.all([getPlayer(item.creator), getThumbnail(item.preview_url)]);
+	}
+	catch {
+		return Response.json({message: "Failed to retrieve workshop item"}, {status: 404, statusText: "Not Found"});
+	}
 
 	const embed: APIEmbed = {
 		title: item.title,
